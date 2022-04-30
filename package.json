@@ -1,0 +1,16 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "dependencies": {
+    "express": "^4.16.3",
+    "firebase-admin": "^5.12.1",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2"
+  }
+}
