@@ -11,4 +11,5 @@
 - [Firebase Cloud Firestore](https://firebase.google.com/docs/firestore/)
 - [Firebase Authentication](https://firebase.google.com/docs/auth/)
 - [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup)
-- [Request](https://github.com/request/request)
+- [Request](https://github.com/request/request
+- This Project has been made with the help of LSTM,RNN And Using Evolution Algorithm.
