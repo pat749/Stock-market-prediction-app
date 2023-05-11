@@ -25,7 +25,7 @@ def evolution(ModelClass, iterations):
             y_predict = model.predict(x_test)
             errors.append(model.error(y_test, y_predict))
 
-        # select top models
+        # select top models of all the models available for you
         error_idx_sorted = np.argsort(errors)
         top_models = [models[i] for i in error_idx_sorted[:2]]
 
