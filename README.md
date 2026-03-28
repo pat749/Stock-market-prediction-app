@@ -13,10 +13,10 @@ The folder [`docs/`](docs/) is a static site you can host on GitHub for free.
 
 The site will be available at `https://<your-username>.github.io/<repository-name>/`.
 
-For this project under **`durgesturing`**, after the repo exists and Pages is enabled:  
-`https://durgesturing.github.io/Stock-market-prediction-app/`
+For **`pat749`**, after Pages is enabled:  
+`https://pat749.github.io/Stock-market-prediction-app/`
 
-If `git push` says **repository not found**, create an empty GitHub repo named **`Stock-market-prediction-app`** on the **`durgesturing`** account (no README/license if you are pushing this existing project), then run `git push -u origin main` again.
+**Push to `pat749`:** set `origin` to `https://github.com/pat749/Stock-market-prediction-app.git`, then run `git push -u origin main`. You must be signed in to GitHub as **`pat749`** (HTTPS token or SSH key on that account). If your Mac cached another user, sign out of GitHub in Keychain or use SSH for `pat749` only.
 
 **Option B — GitHub Actions**
 
