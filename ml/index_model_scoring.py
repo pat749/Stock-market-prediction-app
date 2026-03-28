@@ -1,7 +1,7 @@
 import argparse
 import json
 
-from train_models import train_models 
+from .train_models import train_models
 
 from models.linear_index_regression import LinearIndexRegression
 from models.svr_index_regression import SupportVectorIndexRegression

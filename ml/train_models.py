@@ -10,7 +10,7 @@ from models.linear_index_regression import LinearIndexRegression
 from models.svr_index_regression import SupportVectorIndexRegression
 from models.dnn_regression import DenseNeuralNetwork
 
-from build_dataset import build_training_dataset
+from .build_dataset import build_training_dataset
 
 SAVED_MODELS_DIR = path.join(".", "saved_models")
 SAVED_MODELS_DIR_MAP = {
@@ -37,7 +37,7 @@ def train_models(train_models_data):
                     }
                 ]
             }
-            Refer to train_models_sample.json.
+            Refer to config/train_models_sample.json.
 
     """
 

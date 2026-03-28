@@ -1,11 +1,5 @@
-import argparse
-import json
-
-from train_models import train_models
-
-from models.linear_index_regression import LinearIndexRegression
-from models.svr_index_regression import SupportVectorIndexRegression
 import math
+
 import numpy as np
 
 # Calculate the MAE of the prediction from the model

@@ -17,10 +17,9 @@ from models.linear_index_regression import LinearIndexRegression
 from models.svr_index_regression import SupportVectorIndexRegression
 from models.dnn_regression import DenseNeuralNetwork
 
-from build_dataset import build_predict_dataset, get_stock_data
-import rating_calculation
-
-from train_models import SAVED_MODELS_DIR_MAP
+from .build_dataset import build_predict_dataset, get_stock_data
+from . import rating_calculation
+from .train_models import SAVED_MODELS_DIR_MAP
 
 VALID_MODEL_THRESHOLD = 0.4
 

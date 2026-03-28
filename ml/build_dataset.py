@@ -138,7 +138,7 @@ def build_training_dataset(input_options, predict_n, stock_data=None):
                     ...
                 ]
             }
-            Refer to train_models_sample.json.
+            Refer to config/train_models_sample.json.
         predict_n: Number of days of stock prices to predict
         stock_data: Stock prices dictionary, same as output of get_stock_data.
 
@@ -206,7 +206,7 @@ def build_predict_dataset(input_options, predict_n, stock_data=None, predict=Tru
                     ...
                 ]
             }
-            Refer to train_models_sample.json.
+            Refer to config/train_models_sample.json.
         predict_n: Number of days of stock prices to predict
         stock_data: Stock prices dictionary, same as output of get_stock_data.
         predict: Whether to build the predict feature vector or the test set.

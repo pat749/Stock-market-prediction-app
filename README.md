@@ -1,29 +1,43 @@
 # Stock market prediction
 
+Machine-learning experiments (Python), a small Flask API, optional Node scripts, and a **static demo** in `docs/` for GitHub Pages.
+
+## Repository layout
+
+Run CLI tools and the API from the **repository root** so paths like `data/` and `saved_models/` resolve correctly.
+
+```
+├── backend/           # Flask app (entry: backend.app:app)
+├── ml/                # Training, datasets, predictions, evolution helpers
+├── notebooks/         # Jupyter notebooks
+├── scripts/node/      # Express stub + insertStock.js helper
+├── config/            # Sample train config (e.g. train_models_sample.json)
+├── docs/              # GitHub Pages static site (live demo UI)
+├── research/          # Notes (e.g. evolution.md)
+├── legacy/            # Old Create React App artifacts + long CRA readme
+│   └── cra-public/    # index.html, manifest.json (not used by current Pages site)
+├── requirements.txt
+├── Procfile           # Heroku: gunicorn backend.app:app
+└── README.md
+```
+
 ## Live demo (GitHub Pages)
 
-The folder [`docs/`](docs/) is a static site you can host on GitHub for free.
+The folder [`docs/`](docs/) is the hosted UI.
 
 **Option A — Pages from the `docs` folder**
 
 1. Push this repo to GitHub.
-2. In the repository, go to **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
-4. Choose branch **main** and folder **/docs**, then save.
-
-The site will be available at `https://<your-username>.github.io/<repository-name>/`.
-
-For **`pat749`**, after Pages is enabled:  
-`https://pat749.github.io/Stock-market-prediction-app/`
-
-**Push to `pat749`:** set `origin` to `https://github.com/pat749/Stock-market-prediction-app.git`, then run `git push -u origin main`. You must be signed in to GitHub as **`pat749`** (HTTPS token or SSH key on that account). If your Mac cached another user, sign out of GitHub in Keychain or use SSH for `pat749` only.
+2. **Settings → Pages** → **Deploy from a branch** → branch **`main`**, folder **`/docs`**.
 
 **Option B — GitHub Actions**
 
-1. In **Settings → Pages**, set **Source** to **GitHub Actions**.
-2. Push to **main**; the workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publishes the `docs/` folder.
+1. **Settings → Pages** → **Source: GitHub Actions**.
+2. Push to **`main`**; [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publishes `docs/`.
 
-The Pages UI loads **bundled demo JSON** for GOOGL / AAPL / MSFT when no API key is set. In the browser you can add a free **[Finnhub](https://finnhub.io/register)** API key (stored only in `localStorage`) to load **real daily candles**, **quotes**, and a **trade stream** for other US tickers. Those forecast lines are simple **in-browser estimates**, not your Python ML models — use Flask locally for real model output.
+Example URL: `https://pat749.github.io/Stock-market-prediction-app/` (replace with your user/repo).
+
+The Pages app uses bundled demo JSON unless you add a free [Finnhub](https://finnhub.io/register) API key in the browser (see in-app **API key**). In-browser forecasts are not your Python ML models.
 
 **Preview locally**
 
@@ -31,22 +45,44 @@ The Pages UI loads **bundled demo JSON** for GOOGL / AAPL / MSFT when no API key
 cd docs && python3 -m http.server 8080
 ```
 
-Then open `http://127.0.0.1:8080`.
+Open `http://127.0.0.1:8080`.
 
 ---
 
-## Server (Node)
+## Python (Flask API)
 
-## Get Started
-1. Install Node.js
-2. Install all dependencies (`npm install`)
-3. Start the server (`npm start`)
+From the repo root, install dependencies and run:
 
-## Docs
-- [Node.js](https://nodejs.org/en/)
-- [Express.js](https://expressjs.com/)
-- [Firebase Cloud Firestore](https://firebase.google.com/docs/firestore/)
-- [Firebase Authentication](https://firebase.google.com/docs/auth/)
-- [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup)
-- [Request](https://github.com/request/request
-- This Project has been made with the help of LSTM,RNN And Using Evolution Algorithm.
+```bash
+pip install -r requirements.txt
+gunicorn backend.app:app
+```
+
+Or with Flask’s dev server (if you add a `flask run` setup): use **`backend.app`** as the application module.
+
+Training / saving predictions (paths relative to repo root):
+
+```bash
+python -m ml.train_models config/train_models_sample.json
+python -m ml.save_predictions local GOOGL   # example; see ml/save_predictions.py
+```
+
+---
+
+## Node (optional)
+
+```bash
+cd scripts/node && npm install && npm start
+```
+
+---
+
+## References
+
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [Flask](https://flask.palletsprojects.com/)
+- [Firebase](https://firebase.google.com/docs/)
+- [Request](https://github.com/request/request) (legacy dependency in Node scripts)
+
+This project uses ideas from LSTM/RNN and evolution-style search in the ML notebooks and training code.
