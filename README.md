@@ -23,7 +23,7 @@ For **`pat749`**, after Pages is enabled:
 1. In **Settings → Pages**, set **Source** to **GitHub Actions**.
 2. Push to **main**; the workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publishes the `docs/` folder.
 
-The Pages UI uses **demo JSON** in `docs/data/` (no backend). Your Python/Flask pipeline and trained models are separate; run those locally or on another host if you want live predictions.
+The Pages UI loads **bundled demo JSON** for GOOGL / AAPL / MSFT when no API key is set. In the browser you can add a free **[Finnhub](https://finnhub.io/register)** API key (stored only in `localStorage`) to load **real daily candles**, **quotes**, and a **trade stream** for other US tickers. Those forecast lines are simple **in-browser estimates**, not your Python ML models — use Flask locally for real model output.
 
 **Preview locally**
 

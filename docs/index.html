@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0f1419" />
-    <title>Stock market prediction — demo</title>
+    <title>Stock market prediction</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,32 +20,60 @@
         <div>
           <h1>Stock market prediction</h1>
           <p class="subtitle">
-            Demo UI with bundled sample data — works on GitHub Pages without a server.
+            Offline demo charts plus optional <strong>live</strong> US prices via Finnhub (free API key, stored in this browser only).
           </p>
         </div>
-        <div class="controls">
-          <label for="symbol">Symbol</label>
-          <select id="symbol" aria-label="Stock symbol">
-            <option value="GOOGL">GOOGL</option>
-            <option value="AAPL">AAPL</option>
-            <option value="MSFT">MSFT</option>
-          </select>
+        <div class="header-actions">
+          <button type="button" class="btn btn-ghost" id="btn-api" aria-haspopup="dialog">
+            API key
+          </button>
+          <span class="source-pill" id="source-pill" title="Where chart data comes from">Source: …</span>
         </div>
+      </div>
+      <div class="toolbar">
+        <div class="symbol-row">
+          <label for="symbol-input">Symbol</label>
+          <input
+            id="symbol-input"
+            type="text"
+            maxlength="12"
+            placeholder="e.g. AAPL"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Stock ticker symbol"
+          />
+          <button type="button" class="btn btn-primary" id="btn-load">Load</button>
+        </div>
+        <p class="chips-label">Quick picks</p>
+        <div class="chips" id="chips" aria-label="Popular symbols"></div>
       </div>
     </header>
 
     <main>
-      <p class="banner">
-        <strong>Demo data only.</strong>
-        This page does not call live markets or your Python training pipeline. To use real
-        predictions, run the Flask app locally or deploy the backend separately and point the
-        frontend at those APIs.
+      <p class="banner" id="info-banner">
+        <strong>How it works.</strong>
+        Without an API key, only bundled <strong>GOOGL / AAPL / MSFT</strong> demo series load (not real markets). Add a free
+        <a href="https://finnhub.io/register" rel="noopener noreferrer" target="_blank">Finnhub</a>
+        key via <strong>API key</strong> above to chart <strong>any supported US ticker</strong> with daily candles and a streaming last price when markets are open.
+        Forecast lines for live symbols are simple <strong>browser-side estimates</strong>, not your Python ML models — use your Flask backend for real model output.
       </p>
 
       <div class="meta-grid">
         <div class="meta-card">
           <span>Symbol</span>
           <strong id="meta-symbol">—</strong>
+        </div>
+        <div class="meta-card meta-card-highlight">
+          <span>Live quote</span>
+          <strong id="meta-live">—</strong>
+        </div>
+        <div class="meta-card">
+          <span>Day change</span>
+          <strong id="meta-change">—</strong>
+        </div>
+        <div class="meta-card">
+          <span>Data through</span>
+          <strong id="meta-asof">—</strong>
         </div>
         <div class="meta-card">
           <span>Aggregate grade</span>
@@ -67,7 +95,7 @@
       </div>
 
       <section class="models-section" aria-labelledby="models-heading">
-        <h2 id="models-heading">Models (demo)</h2>
+        <h2 id="models-heading">Models / forecasts</h2>
         <table>
           <thead>
             <tr>
@@ -82,9 +110,39 @@
     </main>
 
     <footer>
-      Static demo in <code>docs/</code> for GitHub Pages. Enable Pages in the repo settings (source:
-      <code>main</code> branch, folder <code>/docs</code>) or use the included GitHub Actions workflow.
+      Static site in <code>docs/</code> — GitHub Pages. Live data uses Finnhub from your browser; keys are not sent to this repo’s server.
     </footer>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+    <div
+      class="modal"
+      id="modal-api"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-api-title"
+      hidden
+    >
+      <h2 id="modal-api-title">Finnhub API key</h2>
+      <p class="modal-hint">
+        Create a free key at
+        <a href="https://finnhub.io/register" rel="noopener noreferrer" target="_blank">finnhub.io/register</a>.
+        It is saved only in <strong>localStorage</strong> on this device (not in the GitHub repo). Anyone with access to this
+        browser can see it — use a personal demo key, not a production secret.
+      </p>
+      <label class="sr-only" for="api-key-input">API token</label>
+      <input
+        id="api-key-input"
+        type="password"
+        class="modal-input"
+        placeholder="Paste token"
+        autocomplete="off"
+      />
+      <div class="modal-actions">
+        <button type="button" class="btn btn-primary" id="api-save">Save</button>
+        <button type="button" class="btn btn-ghost" id="api-clear">Remove key</button>
+        <button type="button" class="btn btn-ghost" id="api-close">Close</button>
+      </div>
+    </div>
 
     <script src="./js/app.js"></script>
   </body>
