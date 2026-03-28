@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f1419" />
+    <title>Stock market prediction — demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <div>
+          <h1>Stock market prediction</h1>
+          <p class="subtitle">
+            Demo UI with bundled sample data — works on GitHub Pages without a server.
+          </p>
+        </div>
+        <div class="controls">
+          <label for="symbol">Symbol</label>
+          <select id="symbol" aria-label="Stock symbol">
+            <option value="GOOGL">GOOGL</option>
+            <option value="AAPL">AAPL</option>
+            <option value="MSFT">MSFT</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <p class="banner">
+        <strong>Demo data only.</strong>
+        This page does not call live markets or your Python training pipeline. To use real
+        predictions, run the Flask app locally or deploy the backend separately and point the
+        frontend at those APIs.
+      </p>
+
+      <div class="meta-grid">
+        <div class="meta-card">
+          <span>Symbol</span>
+          <strong id="meta-symbol">—</strong>
+        </div>
+        <div class="meta-card">
+          <span>Aggregate grade</span>
+          <strong id="meta-grade">—</strong>
+        </div>
+        <div class="meta-card">
+          <span>Stock trend score</span>
+          <strong id="meta-trend">—</strong>
+        </div>
+        <div class="meta-card">
+          <span>Model threshold</span>
+          <strong id="meta-threshold">—</strong>
+        </div>
+      </div>
+
+      <div id="chart-wrap">
+        <div id="chart-error" role="alert"></div>
+        <div id="chart"></div>
+      </div>
+
+      <section class="models-section" aria-labelledby="models-heading">
+        <h2 id="models-heading">Models (demo)</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Model</th>
+              <th scope="col">Score</th>
+              <th scope="col">Implied change</th>
+            </tr>
+          </thead>
+          <tbody id="models-body"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      Static demo in <code>docs/</code> for GitHub Pages. Enable Pages in the repo settings (source:
+      <code>main</code> branch, folder <code>/docs</code>) or use the included GitHub Actions workflow.
+    </footer>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>
