@@ -13,6 +13,11 @@ The folder [`docs/`](docs/) is a static site you can host on GitHub for free.
 
 The site will be available at `https://<your-username>.github.io/<repository-name>/`.
 
+For this project under **`durgesturing`**, after the repo exists and Pages is enabled:  
+`https://durgesturing.github.io/Stock-market-prediction-app/`
+
+If `git push` says **repository not found**, create an empty GitHub repo named **`Stock-market-prediction-app`** on the **`durgesturing`** account (no README/license if you are pushing this existing project), then run `git push -u origin main` again.
+
 **Option B — GitHub Actions**
 
 1. In **Settings → Pages**, set **Source** to **GitHub Actions**.
